@@ -1,0 +1,35 @@
+#!/bin/sh
+
+. fluncs
+. arruncs
+
+flum () {
+	echo $(( $1 * $3 )) $(( $2 + $4 ))
+}
+
+flid () {
+	padlen=$(( ${#3} + 2 ))
+	paded=$(rpad $1 $padlen 0)
+	echo $(( $paded/$3 )) $(( $2 - $4 - $padlen ))
+}
+
+faad () {
+	algnd=$(algn $1 $2 $3 $4)
+	prc1=$(elof 1 $algnd); prc2=$(elof 3 $algnd)
+	echo $(( $prc1 + $prc2 )) $(elof 4 $algnd)
+}
+
+clum () {
+	resul=$(flum $1 $2 $3 $4)
+	trnc $resul 7
+}
+
+clid () {
+	resul=$(flid $1 $2 $3 $4)
+	unzrt $resul
+}
+
+cfad () {
+	resul=$(faad $1 $2 $3 $4)
+	trnc $(unzrt $resul) 7
+}

@@ -1,0 +1,32 @@
+#!/bin/sh
+
+ixof ()	{
+	k=1
+	aim=$1
+	shift
+	for w in $*; do
+		if [[ $w = $aim ]]; then
+			echo $k
+		fi
+		k=$(( $k + 1 ))
+	done
+}
+
+elof () {
+	eval "echo \$$(( 1 + $1 ))"
+}
+
+bgrfst () {
+	if [[ $1 -gt $2 ]]
+	then echo 1 2
+		return 0;
+	fi
+	echo 2 1
+}
+
+bxrfst () {
+	ordr=$(bgrfst $1 $2)
+	frst=$(elof 1 $ordr)
+	scnd=$(elof 2 $ordr)
+	eval "echo \$$(( $frst + 2)) \$$(( $scnd + 2))"
+}

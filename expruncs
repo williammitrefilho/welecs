@@ -1,0 +1,42 @@
+#!/bin/sh
+
+. floruncs
+. exonsts
+
+dexrp () {
+	echo $1 | sed -e"s/\*/ m /g" -e"s/\// d /g"
+}
+
+exper () {
+	if [[ $3 = m ]]
+		then echo $(flum $1 $2 $4 $5)
+	elif [[ $3 = d ]]
+		then echo $(flid $1 $2 $4 $5)
+	fi
+}
+
+clexper () {
+	if [[ $3 = m ]]
+		then echo $(clum $1 $2 $4 $5)
+	elif [[ $3 = d ]]
+		then echo $(clid $1 $2 $4 $5)
+	fi
+}
+
+elper () {
+	resul=$(ufingd $1)
+	if [[ $resul = $1 ]]
+		then echo "ndpq $1"; return;
+	fi
+	shift;
+	while [[ $# -gt 0 ]]
+	do
+		op=$1; p2=$(ufingd $2);
+		if [[ $p2 = $2 ]]
+			then echo "ndpq $2"; return;
+		fi
+		shift; shift;
+		resul=$(clexper $resul $op $p2)
+	done
+	echo $resul
+}

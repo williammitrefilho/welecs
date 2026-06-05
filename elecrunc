@@ -1,0 +1,41 @@
+#!/bin/sh
+
+. muxprunc
+
+elenod () {
+	xprond=""
+	ndnam=$1;
+	shift
+	while [[ $# -gt 0 ]]; do
+		idif=${1:0:1}
+		if [[ $idif = R ]]; then
+			term="+V$2/$1"
+		else
+			sig=${1:$((${#1} - 1)):1}
+			term="${sig}I${1:0:-1}"
+		fi
+		shift; shift;
+		xprond="$xprond $term"
+	done
+	echo $xprond
+}
+eleireq () {
+	xprec=""
+	ndnam=$1;
+	shift
+	while [[ $# -gt 0 ]]; do
+		idif=${1:0:1}
+		if [[ $idif = R ]]; then
+			xprond="$xprond +V$2/$1"; xprec="$xprec +1/$1"
+		fi
+		shift; shift;
+	done
+	echo $xprec
+}
+elrucinc () {
+	read nodlin
+	while [[ $nodlin ]]; do
+		elenod $nodlin
+		read nodlin
+	done
+}

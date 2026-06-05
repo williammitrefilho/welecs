@@ -1,0 +1,45 @@
+#!/bin/sh
+
+. woots
+
+fpof () {
+	echo $2
+}
+
+sgof () {
+	echo $1
+}
+
+szof () {
+	echo ${#1}
+}
+
+trnc () {
+	trunclen=$(( ${#1} - $3 ))
+	if [[ $trunclen -lt 0 ]]
+	then echo $1 $2
+		return 0;
+	fi
+	echo ${1:0:$3} $(( $2 + $trunclen ))
+}
+
+algn () {
+	ordrd=$(bxrfst $2 $4 "$1 $2" "$3 $4")
+	bigxp=$(elof 2 $ordrd); bgsig=$(elof 1 $ordrd)
+	smlxp=$(elof 4 $ordrd); smsig=$(elof 3 $ordrd)
+
+	paded=$(rpad $bgsig $(( $bigxp - $smlxp)) 0 )
+	echo $paded $smlxp $smsig $smlxp
+}
+
+fdrc () {
+	pts=$(splat $1 .)
+	rat=$(elof 2 $pts)
+	echo ${pts/ } $(( -${#rat} ))
+}
+
+unzrt () {
+	trmd=$(rtrm $1 0); trmln=$(( ${#1} - ${#trmd} ))
+	if [[ ${#trmd} = 0 ]]; then trmd=0; fi
+	echo $trmd $(( $2 + $trmln ))
+}

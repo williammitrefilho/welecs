@@ -1,0 +1,27 @@
+#!/bin/sh
+
+manioc () {
+	cntr=$2
+	strm=""
+	while [[ $cntr -gt 0 ]]; do
+		strm=$strm$1
+		cntr=$(($cntr - 1))
+	done
+	echo $strm
+}
+
+rpad () {
+	pdng=$(manioc $3 $2)
+	echo $1$pdng
+}
+rtrm () {
+	cnhr=${2:0:1}
+	echo $1 | sed -e"s/$cnhr*$//"
+}
+splat () {
+	chr=${2:0:1}
+	eval "echo \${1/$chr*/} \${1/*$chr}"
+}
+fingd () {
+	eval "echo \${$1:-$1}"
+}

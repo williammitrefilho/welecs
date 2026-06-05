@@ -1,0 +1,19 @@
+#!/bin/sh
+
+. expruncs
+
+sulmerp () {
+	tot="0 0"
+	while [[ $# -gt 0 ]]
+	do
+		sgn=${1:0:1}; enxpr=${1:1}
+		prcl=$(elper $(dexrp $enxpr))
+		if [[ ${prcl:0:4} = ndpq ]]; then
+			echo $prcl; return;
+		fi
+		shift;
+		if [[ $sgn = "-" ]]; then prcl=$sgn$prcl; fi
+		tot=$(cfad $prcl $tot)
+	done
+	echo $tot
+}
