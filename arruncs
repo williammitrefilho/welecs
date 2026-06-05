@@ -1,21 +1,28 @@
 #!/bin/sh
 
-ixof ()	{
+xixof () {
 	k=1
-	aim=$1
-	shift
+	aim=$1; s=$2; e=${#1}
+	shift 2
 	for w in $*; do
-		if [[ $w = $aim ]]; then
+		cmpart=${w:$s:$e}
+		if [[ $cmpart = $aim ]]; then
 			echo $k
+			return
 		fi
-		k=$(( $k + 1 ))
+		k=$(($k + 1))
 	done
 }
-
 elof () {
 	eval "echo \$$(( 1 + $1 ))"
 }
-
+remuln () {
+	rej=$1; k=1; shift
+	for w in $* ; do
+		if [[ $k != $rej ]]; then echo $w; fi
+		k=$(($k + 1))
+	done
+}
 bgrfst () {
 	if [[ $1 -gt $2 ]]
 	then echo 1 2
