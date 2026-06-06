@@ -1,5 +1,7 @@
 #!/bin/sh
 . elecrunc
+. fliruncs
+. nerdruncs
 rusnof () {
 	echo "Hi. What for?"
 	read optn
@@ -8,6 +10,8 @@ rusnof () {
 redirce () {
 	if [[ $1 = node ]]; then grabnod
 	elif [[ $1 = lsnds ]]; then lstnods
+	elif [[ $1 = abut ]]; then cornode $2
+	elif [[ $1 = seflod ]]; then grabund $2 $3
 	elif [[ $1 = "falo" ]]; then return
 	fi
 	rusnof
@@ -17,12 +21,25 @@ grabnod () {
 	read ndcfg
 	nodnm=$(elof 1 $ndcfg)
 	export t$nodnm="$(elenod $ndcfg)"
+	export tiReq$nodnm="$(eleireq $ndcfg)"
 	export nodes="$nodes $nodnm"
-	echo "Got it:"
-	eval "	echo t$nodnm = \$t$nodnm"
+	ndsply $nodnm
 	echo "Thanks"
+}
+ndsply () {
+	echo "Got it:"
+	eval echo "	t$1 = \$t$1"
+	eval echo "	tiReq$1 = \$tiReq$1"
 }
 lstnods () {
 	echo "Here are the nodes:"
 	echo "	$nodes"
+}
+cornode () {
+	ix=$(xixof $1 0 $nodes)
+	if [[ $ix -gt 0 ]]; then
+		ndsply $1
+	else
+		echo "	No node named that sorry"
+	fi
 }

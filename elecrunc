@@ -10,11 +10,12 @@ elenod () {
 		idif=${1:0:1}
 		if [[ $idif = R ]]; then
 			term="+V$2/$1"
+			shift
 		else
 			sig=${1:$((${#1} - 1)):1}
 			term="${sig}I${1:0:-1}"
 		fi
-		shift; shift;
+		shift
 		xprond="$xprond $term"
 	done
 	echo $xprond

@@ -1,0 +1,12 @@
+#!/binb/sh
+
+. fluncs
+refdlot () {
+	echo -n "What name and value? "
+	read nmnvl
+	sarpmnvl $nmnvl
+}
+grabund () {
+	export $1="$(fdrc $2)"
+	echo "OK"
+}

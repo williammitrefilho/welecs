@@ -20,7 +20,7 @@ rtrm () {
 }
 splat () {
 	chr=${2:0:1}
-	eval "echo \${1/$chr*/} \${1/*$chr}"
+	eval "echo \${1/$chr/ }"
 }
 fingd () {
 	eval "echo \${$1:-$1}"

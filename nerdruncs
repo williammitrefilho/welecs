@@ -1,0 +1,11 @@
+#!/bin/sh
+
+runode () {
+	ndnm=$1
+	eval "iReq$ndnm=\$(sulmerp \$tiReq$ndnm)"
+	eval "$ndnm=\$(sulmerp \$t$ndnm)"
+	eval "V$ndnm=\$(sulmerp +$ndnm/iReq$ndnm)"
+}
+nodaste () {
+	ndnm=$1
+}
