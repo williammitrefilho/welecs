@@ -17,3 +17,10 @@ sulmerp () {
 	done
 	echo $tot
 }
+
+delterm () {
+	srch=$1
+	shift
+	ix=$(xixof $srch 1 $*)
+	remuln $ix $*
+}

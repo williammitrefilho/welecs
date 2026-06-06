@@ -1,0 +1,28 @@
+#!/bin/sh
+. elecrunc
+rusnof () {
+	echo "Hi. What for?"
+	read optn
+	redirce $optn
+}
+redirce () {
+	if [[ $1 = node ]]; then grabnod
+	elif [[ $1 = lsnds ]]; then lstnods
+	elif [[ $1 = "falo" ]]; then return
+	fi
+	rusnof
+}
+grabnod () {
+	echo "type in the node config:"
+	read ndcfg
+	nodnm=$(elof 1 $ndcfg)
+	export t$nodnm="$(elenod $ndcfg)"
+	export nodes="$nodes $nodnm"
+	echo "Got it:"
+	eval "	echo t$nodnm = \$t$nodnm"
+	echo "Thanks"
+}
+lstnods () {
+	echo "Here are the nodes:"
+	echo "	$nodes"
+}
