@@ -1,5 +1,7 @@
 #!/bin/sh
 
+. coloruncs
+
 manioc () {
 	cntr=$2
 	strm=""

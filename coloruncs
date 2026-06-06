@@ -1,0 +1,17 @@
+#!/bin/sh
+
+lilcho () {
+	echo $'\x1B[35m'$1$'\x1B[39m'
+}
+turcho () {
+	echo $'\x1B[36m'$1$'\x1B[39m'
+}
+oracho () {
+	echo $'\x1B[33m'$1$'\x1B[39m'
+}
+blucho () {
+	echo $'\x1B[34m'$1$'\x1B[39m'
+}
+grecho () {
+	echo $'\x1B[32m'$1$'\x1B[39m'
+}
