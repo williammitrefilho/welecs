@@ -1,11 +1,38 @@
 #!/bin/sh
 
+# Step 1: node equations
+# Step 2: node voltages
+
 runode () {
 	ndnm=$1
 	eval "iReq$ndnm=\$(sulmerp \$tiReq$ndnm)"
 	eval "$ndnm=\$(sulmerp \$t$ndnm)"
 	eval "V$ndnm=\$(sulmerp +$ndnm/iReq$ndnm)"
 }
-nodaste () {
+# Step 3: diode equations, capacitor currents
+rundio () {
+	nddi=$1
+	eval "pddi=p$nddi"
+	eval "$pddi=\$(sulmerp \$t$pddi)"
+}
+runcap () {
+	ndcp=$1
+	eval "i$ndcp=\$(sulmerp \$ti$ndcp)"
+}
+# Step 5: check diode states. If voltage or current, as per Step 3: results in a state too diverse, so that component should have commuted too early along dt, interpolate against such amount, and return to step 1, before moving on to Step 6.
+
+valdio () {
 	ndnm=$1
+}
+
+# Step 6: update capacitor and inductor states.
+
+upcap () {
+	cpnm=$1
+	eval "v$cpnm=\$(sulmerp \$tv$cpnm)"
+}
+
+upind () {
+	innm=$1
+	eval "i$innm=\$(sulmerp \$ti$innm)"
 }
